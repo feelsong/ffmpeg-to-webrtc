@@ -17,6 +17,7 @@ In the jsfiddle the top textarea is your browser's SDP, copy that and:
 2. Make sure ffmpeg in your PATH.
 3. Run `go run . <ffmpeg command line options> - < SDP`
 4. Note dash after ffmpeg options. It makes ffmpeg to write output to stdout. The app will read h264 stream from ffmpeg stdout.
+5. ffmpeg output format should be h264. Browsers don't support all h264 profiles so it may not always work. Here is an example of format that works: `-pix_fmt yuv420p -c:v libx264 -bsf:v h264_mp4toannexb -b:v 2M -max_delay 0 -bf 0 -f h264`.
 
 ### Input SessionDescription from ffmpeg-to-webrtc into your browser
 When you see SDP in base64 format printed it means that SDP is already in copy buffer. So you can go to jsfiddle page and paste that into second text area
@@ -24,5 +25,9 @@ When you see SDP in base64 format printed it means that SDP is already in copy b
 ### Hit 'Start Session' in jsfiddle
 A video should start playing in your browser below the input boxes.
 
-## Examples
-See .bat files in src folder (windows only)
+## Examples (windows)
+### Share camera stream
+`go run . -rtbufsize 100M -f dshow -i video="HD User Facing" -pix_fmt yuv420p -c:v libx264 -bsf:v h264_mp4toannexb -b:v 2M -max_delay 0 -bf 0 -f h264 -`
+There is a delay of several seconds. Should be possible to fix it with better ffmpeg configuration.
+
+See also .bat files in src folder (windows only)
