@@ -1,6 +1,6 @@
 # ffmpeg-to-webrtc
 
-ffmpeg-to-webrtc demonstrates how to send video from ffmpeg to your browser using pion.
+ffmpeg-to-webrtc demonstrates how to send video from ffmpeg to your browser using [pion](https://github.com/pion/webrtc).
 
 This example has the same structure as [play-from-disk-h264](https://github.com/pion/example-webrtc-applications/blob/master/play-from-disk-h264) but instead of reading from a file it reads H264 stream from ffmpeg stdout pipe.
 
