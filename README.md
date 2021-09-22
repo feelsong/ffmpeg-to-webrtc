@@ -27,7 +27,11 @@ A video should start playing in your browser below the input boxes.
 
 ## Examples (windows)
 ### Share camera stream
-`go run . -rtbufsize 100M -f dshow -i video="HD User Facing" -pix_fmt yuv420p -c:v libx264 -bsf:v h264_mp4toannexb -b:v 2M -max_delay 0 -bf 0 -f h264 -`
+```go run . -rtbufsize 100M -f dshow -i video="PUT_DEVICE_NAME" -pix_fmt yuv420p -c:v libx264 -bsf:v h264_mp4toannexb -b:v 2M -max_delay 0 -bf 0 -f h264 - < SDP```. 
 There is a delay of several seconds. Should be possible to fix it with better ffmpeg configuration.
 
-See also .bat files in src folder (windows only)
+To check list of devices: `ffmpeg -list_devices true -f dshow -i dummy`.  
+It is possible also to set a resolution and a format, for example `-pixel_format yuyv422 -s 640x480`.
+Possible formats: `ffmpeg -list_options true -f dshow -i video=PUT_DEVICE_NAME`.
+### Share screen or window
+See `.bat` files in src folder
